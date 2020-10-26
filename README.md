@@ -1,5 +1,7 @@
 # SnipPy
 
+The source code for SnipPy, the tool created for the [Small-Step Live Programming By Example](https://dl.acm.org/doi/10.1145/3379337.3415869) paper.
+
 This is a meta-repository containing the instructions, build scripts, and necessary submodules to build a version of SnipPy ready to run a local instance of VS Code!
 
 ## Content
@@ -7,13 +9,13 @@ This is a meta-repository containing the instructions, build scripts, and necess
 2. [Setup](#setup)
 3. [Building](#building)
 4. [Running](#running)
-5. [TODOs](#todos)
+5. [TODOs](#todos) 
 
 ## Modules
 This repository is meant for simplifying the process of building SnipPy, and is really just the following two repositories:
 
 ### Synthesizer
-This repository contains the Enumerative Synthesizer that powers SnipPy. It is an implementation of bottom-up enumerative synthesis with obervational equivalence.
+This repository contains the Enumerative Synthesizer that powers SnipPy. It is an implementation of bottom-up enumerative synthesis with observational equivalence.
 
 ## VS Code
 This repository is a fork of Microsoft's [VS Code Repository](https://github.com/microsoft/vscode) modified to include [Projection Boxes](https://cseweb.ucsd.edu/~lerner/papers/projection-boxes-chi2020.pdf) with SnipPy support. 
