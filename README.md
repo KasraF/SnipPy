@@ -38,13 +38,7 @@ For building/running VS Code and the Projection Boxes, you need:
 
 For building/running the synthesizer, you need:
 1. [Scala](https://scala-lang.org/)
-2. [SBT](https://www.scala-sbt.org/)
-
-After installing these, please set the following variables in the `run.sh`:
-1. `PYTHON3`: The absolute path to your Python 3 executable (e.g. `/usr/bin/python3`)
-2. `SCALA`: The absolute path to your Scala executable (e.g. `/usr/bin/scala`)
-
-(The script already defines these variables, set to empty strings. You can replace the empty string with the values for your system) 
+2. [SBT](https://www.scala-sbt.org/) 
 
 ## Building
 
@@ -88,7 +82,7 @@ You can run SnipPy just by running our custom VS Code, but it looks for the foll
 4. `IMGSUM`: Absolute path to the `img-summary.py` file in `vscode/src/run.py`
 5. `SYNTH`: Absolute path to the `synthesizer` jar file in `synthesizer/target/scala-2.13/PythonSynthesizer-assembly-0.1.jar`
 
-But you can just use the `./run.sh` script instead, after setting the `PYTHON3` and `SCALA` variables in that file instead.
+But you can just use the `./run.sh` script instead :)
 
 ## TODOs
 2. Write the complete build scripts
