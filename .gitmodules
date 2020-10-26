@@ -1,0 +1,7 @@
+[submodule "vscode"]
+	path = vscode
+	url = https://github.com/UCSD-PL/vscode
+	branch = snippy
+[submodule "synthesizer"]
+	path = synthesizer
+	url = https://github.com/KasraF/SnippySynthesizer
