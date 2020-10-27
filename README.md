@@ -2,7 +2,7 @@
 
 The source code for SnipPy, the tool created for the [Small-Step Live Programming By Example](https://dl.acm.org/doi/10.1145/3379337.3415869) paper.
 
-This is a meta-repository containing the instructions, build scripts, and necessary submodules to build a version of SnipPy ready to run a local instance of VS Code!
+This is a meta-repository containing the instructions, build scripts, and necessary submodules to build a version of SnipPy ready to run a local instance of VS Code! (For the web version, see [here](https://github.com/KasraF/SnipPy/tree/web))
 
 ## Content
 1. [Modules](#modules)
