@@ -2,14 +2,10 @@
 set -euo pipefail
 
 # The environment variables
-PYTHON3="$(which python3)"
-SCALA="$(which scala)"
-RUNPY="$(pwd)/vscode/src/run.py"
-IMGSUM="$(pwd)/vscode/src/img-summary.py"
-SYNTH="$(pwd)/synthesizer/target/scala-2.13/PythonSynthesizer-assembly-0.1.jar"
+SERVER_PORT=8080
 
-if [[ -d vscode ]]; then
-    PYTHON3="$PYTHON3" SCALA="$SCALA" RUNPY="$RUNPY" IMGSUM="$IMGSUM" SYNTH="$SYNTH" ./vscode/scripts/code.sh;
+if [[ -d synthesizer ]]; then
+    SERVER_PORT=$SERVER_PORT java -jar synthesizer/target/snippy-server-0.1-SNAPSHOT.jar;
 else
-    echo "vscode directory not found. Did you initialize the submodules and build them first?";
+    echo "synthesizer directory not found. Did you initialize the submodules and build them first?";
 fi;

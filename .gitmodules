@@ -5,3 +5,7 @@
 [submodule "synthesizer"]
 	path = synthesizer
 	url = https://github.com/KasraF/SnippySynthesizer
+	branch = server
+[submodule "monaco-editor"]
+	path = monaco-editor
+	url = https://github.com/KasraF/monaco-editor

@@ -8,11 +8,44 @@ if [[ -d vscode ]]; then
     echo "------------------------------"
 
     cd vscode;
-    yarn && yarn compile;
+    yarn && yarn run gulp editor-distro;
+
+    if [[ -d out-monaco-editor-core ]]; then
+        cd out-monaco-editor-core &&
+        yarn link &&
+        cd ../;
+    fi;
+
     cd ../;
 
 else
     echo "vscode directory not found. Did you initialize the submodules?";
+fi;
+
+if [[ -d monaco-editor ]]; then
+
+    echo "------------------------------"
+    echo "-- Building Monaco Editor ----"
+    echo "------------------------------"
+
+    cd monaco-editor;
+
+    # Clean existing build
+    if [[ -d release ]]; then rm -rf release; fi;
+
+    yarn link monaco-editor-core;
+    yarn && yarn release;
+
+    if [[ -d release ]]; then
+        cd release/;
+        yarn link;
+        cd ../;
+    fi;
+
+    cd ../;
+
+else
+    echo "monaco-editor directory not found. Did you initialize the submodules?";
 fi;
 
 if [[ -d synthesizer ]]; then
@@ -22,7 +55,17 @@ if [[ -d synthesizer ]]; then
     echo "------------------------------"
 
     cd synthesizer;
-    sbt assembly;
+    yarn link monaco-editor;
+    yarn;
+
+    # We need to download Pyodide
+    cd src/main/resources/static/pyodide;
+    wget https://github.com/KasraF/pyodide/releases/download/monaco/pyodide_with_pillow.zip;
+    unzip pyodide_with_pillow.zip;
+    rm pyodide_with_pillow.zip;
+    cd ../../../../../;
+
+    mvn clean package -DskipTests;
     cd ../;
 
 else
