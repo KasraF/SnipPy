@@ -58,12 +58,16 @@ if [[ -d synthesizer ]]; then
     yarn link monaco-editor;
     yarn;
 
-    # We need to download Pyodide
-    cd src/main/resources/static/pyodide;
-    wget https://github.com/KasraF/pyodide/releases/download/monaco/pyodide_with_pillow.zip;
-    unzip pyodide_with_pillow.zip;
-    rm pyodide_with_pillow.zip;
-    cd ../../../../../;
+    if [[ ! -e src/main/resources/static/pyodide/astropy.data ]]; then
+       echo "We need to download Pyodide"
+       cd src/main/resources/static/pyodide;
+       wget https://github.com/KasraF/pyodide/releases/download/monaco/pyodide_with_pillow.zip;
+       unzip pyodide_with_pillow.zip;
+       rm pyodide_with_pillow.zip;
+       cd ../../../../../;
+    else
+        echo "Pyodide already exists.";
+    fi;
 
     mvn clean package -DskipTests;
     cd ../;
