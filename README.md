@@ -1,4 +1,4 @@
-# SnipPy
+# LooPy
 
 The source code for SnipPy, the tool created for the [Small-Step Live Programming By Example](https://dl.acm.org/doi/10.1145/3379337.3415869) paper.
 
