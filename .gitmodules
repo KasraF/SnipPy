@@ -9,3 +9,4 @@
 [submodule "monaco-editor"]
 	path = monaco-editor
 	url = https://github.com/KasraF/monaco-editor
+	branch = main
