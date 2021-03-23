@@ -56,6 +56,7 @@ To build VS Code, you first need to get the necessary node modules, then compile
 cd vscode;
 yarn;
 yarn compile;
+cd ../;
 ```
 
 To build the synthesizer and wrap it in an executable Jar file, you can just run:
