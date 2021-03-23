@@ -27,7 +27,9 @@ To get these submodules, you can run the following git command:
 git submodule update --init --remote
 ```
 
-After that, please make sure that the `vscode` and `synthesizer` exist and have files in them.
+After that, please make sure that the `vscode` and `synthesizer` exist and have files in them. 
+
+Note that this is only for convenience, and as long as you have both repos checked out with the same directory structure (both under the same root) everything else here should still work.
 
 The build scripts provided in this repo assume that certain applications are installed and exist on the `PATH`.
 
