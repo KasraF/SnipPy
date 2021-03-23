@@ -17,7 +17,7 @@ This repository is meant for simplifying the process of building LooPy, and is r
 ### Synthesizer
 This repository contains the Enumerative Synthesizer that powers LooPy. It is an implementation of bottom-up enumerative synthesis with observational equivalence with `REDACTED`.
 
-## VS Code
+### VS Code
 This repository is a fork of Microsoft's [VS Code Repository](https://github.com/microsoft/vscode) modified to include [Projection Boxes](https://cseweb.ucsd.edu/~lerner/papers/projection-boxes-chi2020.pdf) with LooPy support.
 
 ## Setup
