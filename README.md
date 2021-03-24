@@ -1,8 +1,8 @@
-# LooPy
+# PopPy
 
-The source code for SnipPy, the tool created for the [Small-Step Live Programming By Example](https://dl.acm.org/doi/10.1145/3379337.3415869) paper.
+This `poppy` branch contains source code for PopPy, an extension to SnipPy, the tool created for the [Small-Step Live Programming By Example](https://dl.acm.org/doi/10.1145/3379337.3415869) paper, that accepts partial output specifications.
 
-This is a meta-repository containing the instructions, build scripts, and necessary submodules to build a version of SnipPy ready to run in your browser! (For the local version see [here](https://github.com/KasraF/SnipPy)).
+This is a meta-repository containing the instructions, build scripts, and necessary submodules to build a local version of PopPy.
 
 ## Content
 1. [Modules](#modules)
@@ -12,10 +12,10 @@ This is a meta-repository containing the instructions, build scripts, and necess
 5. [TODOs](#todos) 
 
 ## Modules
-This repository is meant for simplifying the process of building SnipPy, and is really just the following two repositories:
+This repository is meant for simplifying the process of building PopPy, and is really just the following two repositories:
 
 ### Synthesizer
-This repository contains the server that will eventually serve the editor, combined with the Enumerative Synthesizer that powers SnipPy. It is an implementation of bottom-up enumerative synthesis with observational equivalence.
+This repository contains the server that will eventually serve the editor, combined with the Enumerative Synthesizer that powers SnipPy and hence PopPy. It is an implementation of bottom-up enumerative synthesis with observational equivalence.
 
 ## VS Code
 This repository is a fork of Microsoft's [VS Code Repository](https://github.com/microsoft/vscode) modified to include [Projection Boxes](https://cseweb.ucsd.edu/~lerner/papers/projection-boxes-chi2020.pdf) with SnipPy support.
@@ -48,73 +48,28 @@ For building/running the synthesizer/server, you need:
 
 ## Building
 
-> tldr; You can build both modules by running
-> 
-> ``` sh
-> ./build.sh
-> ```
-
-To build VS Code, we first need to get the necessary node modules, compile the source to the javascript files that `monaco-editor` needs, and finally link it so that `monaco-editor` uses our build instead of downloading the package from the Node package repository:`
-
-``` sh
-cd vscode;
-yarn;
-yarn run gulp editor-distro;
-cd out-monaco-editor-core;
-yarn link;
-cd ../../;
+Build the synthesizer
+```
+cd synthesizer
+git checkout poppy
+mvn clean install -Plocal
 ```
 
-We can then build the editor that can be loaded in the browser:
-
-``` sh
-cd monaco-editor;
-link monaco-editor-core;
-yarn;
-yarn release;
-cd release;
-yarn link;
-cd ../../;
+Build the editor
+```
+cd ../vscode
+git checkout poppy
+yarn
+yarn compile
 ```
 
-SnipPy uses [Pyodide](https://pyodide.readthedocs.io/en/latest/) to run Python directly in the browser. Before building the server, we need to download it and unzip it in the right directory to be served statically by the browser:
-
-``` sh
-cd synthesizer/src/main/resources/static/pyodide;
-wget https://github.com/KasraF/pyodide/releases/download/monaco/pyodide_with_pillow.zip;
-unzip pyodide_with_pillow.zip;
-rm pyodide_with_pillow.zip;
-cd ../../../../../../;
-```
-
-If you don't have `wget`, you can download that link however you like and unzip it in that directory. At the end, make sure that all files in that zip file are directly in `resources/static/pyodide` and not in a subdirectory.`
-
-Finally, to build the synthesizer and wrap it in an executable Jar file, we can just run:
-
-``` sh
-cd synthesizer;
-yarn link monaco-editor;
-mvn clean install;
-cd ../;
-```
-
-This repo also includes a `build.sh` script that does both for you. :)
 
 ## Running
 
-> tldr; You can run SnipPy by running
-> ```sh
-> ./run.sh
-> ```
-> And opening http://localhost:8080/ in your favorite (non-Safari) browser.
-
-You can run SnipPy just by running the Jar file `synthesizer/target/snippy-server-0.1-SNAPSHOT.jar`. This will start up the server in port 8080.
-
-To change the port on which the server runs, you can set the `SERVER_PORT` environment variable.`
-
-To make this more convenient, you can instead set the `SERVER_PORT` variable in the `./run.sh` script and use that instead. :)
-
-After running the Jar file, you can open SnipPy in your favorite browser by going to https://localhost:8080/ (or the port you set it to). But please note that SnipPy does not work in Safari, because the Python interpreter crashes and the editor never fully loads. Any other browser should work. 
+Make sure you are in the `vscode` directory before executing the following command.
+```
+SNIPPY_UTILS=src/snippy.py RUNPY=src/run.py IMGSUM=src/img-summary.py SYNTH=../synthesizer/target/snippy-server-0.1-SNAPSHOT-jar-with-dependencies.jar PYTHON3=$(which python3) SCALA=$(which scala) ./scripts/code.sh
+```
 
 ## TODOs
 1. Cleanup the build process. Currently, `vscode` builds much more than it needs, and the compilation takes a long time.
