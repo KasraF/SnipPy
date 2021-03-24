@@ -67,13 +67,13 @@ mvn clean package -Plocal;
 cd ../;
 ```
 
-The `-Plocal` packages it for the local non-browser build, since LooPy currently doesn't work with the browser-based editor. 
+The `-Plocal` packages it for the local non-browser build, since PopPy currently doesn't work with the browser-based editor. 
 
 This repo also includes a `build.sh` script that does both for you. :)
 
 ## Running
 
-> tldr; On Unix-like operating systems, you can run LooPy using the script 
+> tldr; On Unix-like operating systems, you can run PopPy using the script 
 > 
 > ``` sh
 > ./run.sh
