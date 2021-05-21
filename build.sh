@@ -7,10 +7,25 @@ if [[ -d vscode ]]; then
 	echo "------------------------------"
 
     cd vscode;
-    yarn && yarn compile;
+    yarn && yarn compile && yarn run gulp editor-distro;
 	cd ../;
 else
     echo "vscode directory not found. Did you initialize the submodules?";
+	exit 1;
+fi;
+
+if [[ -d monaco-editor ]]; then
+
+	echo "------------------------------"
+    echo "-- Building monaco-editor --"
+    echo "------------------------------"
+
+    cd monaco-editor;
+    yarn release;
+    cd ../;
+else
+	echo "monaco-editor directory not found. Did you initialize the submodule?";
+	exit 1;
 fi;
 
 if [[ -d synthesizer ]]; then
@@ -20,10 +35,11 @@ if [[ -d synthesizer ]]; then
     echo "------------------------------"
 
     cd synthesizer;
-    mvn clean package -Plocal;
+    mvn clean package -Pserver;
     cd ../;
 else
     echo "synthesizer directory not found. Did you initialize the submodules?";
+	exit 1;
 fi;
 
 echo "------------------------------"

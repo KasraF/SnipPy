@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd vscode;
-SNIPPY_UTILS=src/snippy.py RUNPY=src/run.py IMGSUM=src/img-summary.py SYNTH=../synthesizer/target/snippy-server-0.1-SNAPSHOT-jar-with-dependencies.jar LOG_DIR=../logs PYTHON3=$(which python3) JAVA=$(which java) HEAP=20G ./scripts/code.sh
+# The environment variables
+SERVER_PORT=8080
+
+if [[ -d synthesizer ]]; then
+    SERVER_PORT=$SERVER_PORT java -jar synthesizer/target/snippy-server-0.1-SNAPSHOT.jar;
+else
+    echo "synthesizer directory not found. Did you initialize the submodules and build them first?";
+fi;
