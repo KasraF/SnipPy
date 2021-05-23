@@ -17,7 +17,7 @@ fi;
 if [[ -d monaco-editor ]]; then
 
 	echo "------------------------------"
-    echo "-- Building monaco-editor --"
+    echo "--- Building monaco-editor ---"
     echo "------------------------------"
 
     cd monaco-editor;
@@ -35,12 +35,27 @@ if [[ -d synthesizer ]]; then
     echo "------------------------------"
 
     cd synthesizer;
-    mvn clean package -Pserver;
+    mvn clean install;
     cd ../;
 else
     echo "synthesizer directory not found. Did you initialize the submodules?";
 	exit 1;
 fi;
+
+if [[ -d synthesizer ]]; then
+
+    echo "------------------------------"
+    echo "---- Building the server -----"
+    echo "------------------------------"
+
+    cd server;
+    mvn clean package;
+    cd ../;
+else
+    echo "server directory not found. Did you initialize the submodules?";
+	exit 1;
+fi;
+
 
 echo "------------------------------"
 echo "-- Build complete ------------"

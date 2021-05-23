@@ -22,6 +22,11 @@ cd ../../ &&
 
 cd synthesizer &&
 git checkout loopy-web &&
+mvn clean install &&
+cd ../ &&
+
+cd server &&
+git checkout main &&
 yarn link monaco-editor &&
 yarn &&
 cd src/main/resources/static/ &&
@@ -29,6 +34,7 @@ wget 'https://github.com/pyodide/pyodide/releases/download/0.17.0/pyodide-build-
 tar --wildcards -xvf 'pyodide-build-0.17.0.tar.bz2' 'pyodide/pyodide*' 'pyodide/packages.json' &&
 rm 'pyodide-build-0.17.0.tar.bz2' &&
 cd ../../../.. &&
-mvn clean package -Pserver &&
+mvn clean package &&
+cd ../ &&
 
-cd ../;
+echo "Done!"

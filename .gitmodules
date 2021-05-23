@@ -9,3 +9,6 @@
 [submodule "monaco-editor"]
 	path = monaco-editor
 	url = https://github.com/KasraF/monaco-editor
+[submodule "server"]
+	path = server
+	url = https://github.com/KasraF/SnippyServer
