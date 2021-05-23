@@ -4,7 +4,7 @@
 git submodule update --remote --init &&
 
 cd vscode &&
-git checkout loopy-web &&
+git checkout snippy-plus &&
 yarn &&
 yarn run gulp editor-distro &&
 cd out-monaco-editor-core &&
@@ -21,7 +21,7 @@ yarn link &&
 cd ../../ &&
 
 cd synthesizer &&
-git checkout loopy-web &&
+git checkout snippy-plus &&
 mvn clean install &&
 cd ../ &&
 
